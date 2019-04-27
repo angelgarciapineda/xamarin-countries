@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Countries.Cross"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="Countries.Cross.MainPage" 
+             Title="Banderas">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ffimageloadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"></ffimageloadingsvg:SvgImageSourceConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsEnabled="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"
+                               Color="Green"/>
+
+            <CollectionView ItemsSource="{Binding Countries}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ffimageloading:CachedImage  Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
+                                            LoadingPlaceholder = "Flag"
+                                            ErrorPlaceholder= "Error"
+                                            HeightRequest = "70"
+                                            CacheDuration= "30"
+                                            RetryCount= "5"
+                                            RetryDelay= "450"
+                                            DownsampleToViewSize = "true">
+                            </ffimageloading:CachedImage>
+                            
+                            <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   VerticalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   TextColor="Blue"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
