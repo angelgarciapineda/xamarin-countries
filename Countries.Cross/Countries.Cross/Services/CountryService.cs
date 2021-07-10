@@ -20,11 +20,11 @@ namespace Countries.Cross.Services
             return httpClient;
         }
 
-        public async static Task<List<Country>> GetCountries()
+        public async static Task<List<Country>> GetCountries(String lang)
         {
             try
             {
-                var response = await client.GetAsync($"https://restcountries.eu/rest/v2/all?fields=name;flag");
+                var response = await client.GetAsync($"https://restcountries.eu/rest/v2/lang/{lang}?fields=name;flag");
 
                 if (response.IsSuccessStatusCode)
                 {

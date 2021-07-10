@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Countries.Cross"
+             xmlns:local="clr-namespace:Countries.Cross.ViewModels"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Countries.Cross.MainPage" 
@@ -11,13 +11,27 @@
             <ffimageloadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"></ffimageloadingsvg:SvgImageSourceConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+    <!--<ContentPage.BindingContext>
+        <local:ItemViewModel></local:ItemViewModel>
+    </ContentPage.BindingContext>-->
+
     <ContentPage.Content>
         <StackLayout Margin="20">
             <ActivityIndicator IsRunning="{Binding IsLoading}"
                                IsEnabled="{Binding IsLoading}"
                                IsVisible="{Binding IsLoading}"
                                Color="Green"/>
+
+            <StackLayout Padding="10,10,10,10" HorizontalOptions="Start">
+                <Label Text="Paises que hablan uno o mas idiomas" TextColor="Black" FontAttributes="Bold"/>
+                <Label Text="Buscar por lenguaje, por ejemplo {Español, Ingles, Aleman}" TextColor="Black" FontSize="Small"/>
+                <Entry x:Name="txtCiudad" TextColor="White" BackgroundColor="Gray"/>
+
+
+            </StackLayout>
+            <Button x:Name="btnBuscar" Text="Buscar paises" WidthRequest="185"
+                            BorderWidth="1" Clicked="btnBuscar_Clicked"/>
+            <!--<Picker ItemDisplayBinding="{Binding lang }" x:Name="LangEntry" Title="Select a lang" ItemsSource="{Binding LangList }" />-->
 
             <CollectionView ItemsSource="{Binding Countries}">
                 <CollectionView.ItemsLayout>
@@ -43,7 +57,7 @@
                                             RetryDelay= "450"
                                             DownsampleToViewSize = "true">
                             </ffimageloading:CachedImage>
-                            
+
                             <Label Grid.Column="1"
                                    Text="{Binding Name}"
                                    FontSize="10"

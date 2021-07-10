@@ -27,12 +27,12 @@ namespace Countries.Cross.ViewModels
         }
 
 
-        public async Task LoadCountries()
+        public async Task LoadCountries(string es)
         {
 
             IsLoading = true;
 
-            var countries = await CountryService.GetCountries();
+            var countries = await CountryService.GetCountries(es);
             Countries = new ObservableCollection<Country>(countries);
 
             IsLoading = false;
