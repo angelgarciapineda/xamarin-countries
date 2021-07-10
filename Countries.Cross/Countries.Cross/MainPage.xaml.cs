@@ -34,16 +34,30 @@ namespace Countries.Cross
         {
             if (!String.IsNullOrEmpty(txtCiudad.Text))
             {
-                await vm.LoadCountries(txtCiudad.Text);
-                //var clima = await CountryService.GetCountries(txtCiudad.Text);
-
-
-
-                //if (clima != null)
-                //{
-                //    this.BindingContext = clima;
-                //    btnBuscar.Text = "Buscar de nuevo";
-                //}
+                switch (txtCiudad.Text.ToLower())
+                {
+                    case "español":
+                        await vm.LoadCountries("es");
+                        break;
+                    case "ingles":
+                        await vm.LoadCountries("en");
+                        break;
+                    case "frances":
+                        await vm.LoadCountries("fr");
+                        break;
+                    case "aleman":
+                        await vm.LoadCountries("de");
+                        break;
+                    case "portugues":
+                        await vm.LoadCountries("pt");
+                        break;
+                    case "italiano":
+                        await vm.LoadCountries("it");
+                        break;
+                    default:
+                        await vm.LoadCountries("es");
+                        break;
+                }
 
             }
         }

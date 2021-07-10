@@ -11,9 +11,6 @@
             <ffimageloadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"></ffimageloadingsvg:SvgImageSourceConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <!--<ContentPage.BindingContext>
-        <local:ItemViewModel></local:ItemViewModel>
-    </ContentPage.BindingContext>-->
 
     <ContentPage.Content>
         <StackLayout Margin="20">
@@ -23,15 +20,14 @@
                                Color="Green"/>
 
             <StackLayout Padding="10,10,10,10" HorizontalOptions="Start">
-                <Label Text="Paises que hablan uno o mas idiomas" TextColor="Black" FontAttributes="Bold"/>
-                <Label Text="Buscar por lenguaje, por ejemplo {Español, Ingles, Aleman}" TextColor="Black" FontSize="Small"/>
-                <Entry x:Name="txtCiudad" TextColor="White" BackgroundColor="Gray"/>
+                <Label Text="Países que hablan uno o mas idiomas" TextColor="Black" FontAttributes="Bold"/>
+                <Label Text="Buscar por lenguaje, por ejemplo: Español, Ingles, Aleman" TextColor="Black" FontSize="Small"/>
+                <Entry x:Name="txtCiudad" TextColor="Black" BackgroundColor="White"/>
 
 
             </StackLayout>
             <Button x:Name="btnBuscar" Text="Buscar paises" WidthRequest="185"
                             BorderWidth="1" Clicked="btnBuscar_Clicked"/>
-            <!--<Picker ItemDisplayBinding="{Binding lang }" x:Name="LangEntry" Title="Select a lang" ItemsSource="{Binding LangList }" />-->
 
             <CollectionView ItemsSource="{Binding Countries}">
                 <CollectionView.ItemsLayout>
